@@ -1,0 +1,14 @@
+project_name = "aks-devsec-oidc"
+location     = "eastus"
+
+# Optionally pin a version if you want:
+# kubernetes_version = "1.29.7"
+
+node_vm_size = "Standard_B2s"
+node_count   = 1
+
+tags = {
+  project = "devsecops"
+  owner   = "lia"
+  repo    = "aks-secure-oidc"
+}

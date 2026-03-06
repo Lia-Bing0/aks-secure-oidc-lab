@@ -1,0 +1,10 @@
+{
+  "spec": {
+    "tokenRequests": [
+      {
+        "audience": "api://AzureADTokenExchange",
+        "expirationSeconds": 3600
+      }
+    ]
+  }
+}

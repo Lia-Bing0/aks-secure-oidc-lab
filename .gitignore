@@ -1,0 +1,10 @@
+# Terraform state (never commit)
+.terraform/
+*.tfstate
+*.tfstate.*
+
+# Ignore archived screenshots
+docs/images/archive/
+
+# Ignore personal notes
+docs/Notes/
