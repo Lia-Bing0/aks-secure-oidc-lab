@@ -20,10 +20,17 @@ spec:
           command: ["/bin/sh","-c"]
           args:
             - "while true; do echo 'Secret contents:'; cat /mnt/secrets-store/demo-secret; sleep 10; done"
+
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            readOnlyRootFilesystem: true
+
           volumeMounts:
             - name: secrets-store
               mountPath: "/mnt/secrets-store"
               readOnly: true
+
       volumes:
         - name: secrets-store
           csi:
