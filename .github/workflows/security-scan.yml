@@ -8,26 +8,30 @@ on:
 jobs:
   trivy-scan:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Scan Terraform
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.34.2
         with:
+          version: v0.69.3
           scan-type: config
           scan-ref: terraform/
           severity: HIGH,CRITICAL
 
       - name: Scan Kubernetes manifests
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.34.2
         with:
+          version: v0.69.3
           scan-type: config
           scan-ref: kubernetes/
           severity: HIGH,CRITICAL
 
       - name: Scan demo image
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.34.2
         with:
+          version: v0.69.3
           image-ref: busybox:1.36
           severity: HIGH,CRITICAL
