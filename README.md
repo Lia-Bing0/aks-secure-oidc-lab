@@ -1,5 +1,7 @@
 # AKS Secure OIDC Workload Identity Lab
 
+[![DevSecOps Security Scan](https://github.com/Lia-Bing0/aks-secure-oidc-lab/actions/workflows/security-scan.yml/badge.svg)](https://github.com/Lia-Bing0/aks-secure-oidc-lab/actions/workflows/security-scan.yml)
+
 This project demonstrates a secure DevSecOps workflow for Kubernetes workloads on Azure.
 
 It shows how to eliminate static credentials by using Azure Workload Identity and Azure Key Vault to retrieve secrets securely at runtime.
