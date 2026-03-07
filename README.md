@@ -202,3 +202,9 @@ When you are finished with the lab, remove all provisioned infrastructure to avo
 ```bash
 terraform destroy
 ```
+
+## Troubleshooting
+
+Implementation troubleshooting notes encountered during development are documented in:
+
+[docs/troubleshooting.md](docs/troubleshooting.md)
