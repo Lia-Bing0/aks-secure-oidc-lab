@@ -215,6 +215,14 @@ When you are finished with the lab, remove all provisioned infrastructure to avo
 terraform destroy
 ```
 
+## Cost Considerations
+
+This lab deploys an AKS cluster, Key Vault, Log Analytics workspace, and supporting network infrastructure.
+
+Typical cost for running the lab temporarily in Azure is approximately $5–$10 depending on region and runtime duration.
+
+Always run `terraform destroy` after completing the lab to avoid unnecessary charges.
+
 ## Troubleshooting
 
 Implementation troubleshooting notes encountered during development are documented in:
