@@ -57,6 +57,16 @@ The infrastructure code is organized under the `terraform/` directory and suppor
 
 ![Terraform Apply](docs/images/01-terraform-apply.png)
 
+## Terraform Outputs
+
+After deployment, Terraform exposes several useful outputs including:
+
+- AKS cluster name
+- AKS API server endpoint
+- Azure Key Vault URI
+
+These outputs assist with validating deployment and connecting to the cluster using kubectl.
+
 ## AKS Cluster Configuration
 
 This lab provisions and configures an Azure Kubernetes Service (AKS) cluster using Terraform. The cluster serves as the runtime environment for the workload identity and secure secret retrieval workflow.
