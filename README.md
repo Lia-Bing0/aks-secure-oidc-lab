@@ -2,9 +2,15 @@
 
 [![DevSecOps Security Scan](https://github.com/Lia-Bing0/aks-secure-oidc-lab/actions/workflows/security-scan.yml/badge.svg)](https://github.com/Lia-Bing0/aks-secure-oidc-lab/actions/workflows/security-scan.yml)
 
-This project demonstrates a secure DevSecOps workflow for Kubernetes workloads on Azure.
+This project demonstrates a secure DevSecOps workflow for Kubernetes workloads on Azure using Azure Workload Identity and Azure Key Vault to eliminate static credentials.
 
-It shows how to eliminate static credentials by using Azure Workload Identity and Azure Key Vault to retrieve secrets securely at runtime.
+## Why I Built This
+
+Modern Kubernetes security patterns are moving away from static service principal credentials toward federated workload identities.
+
+This lab was built to demonstrate how Azure Workload Identity and OIDC federation allow Kubernetes workloads to securely access Azure Key Vault without storing credentials inside the cluster.
+
+The project also demonstrates integrating security scanning into CI using Trivy to enforce shift-left DevSecOps practices.
 
 The implementation includes:
 
