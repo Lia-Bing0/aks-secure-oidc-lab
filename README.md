@@ -23,33 +23,37 @@ The implementation includes:
 - Trivy security scanning
 - GitHub Actions CI security pipeline
 
-## Project Overview
-
-This project demonstrates secure secret management for Kubernetes workloads on Azure by combining Azure Workload Identity (OIDC federation), Azure Managed Identity, and Azure Key Vault. The lab is designed to show a modern cloud-native security pattern where applications retrieve secrets at runtime without storing static credentials in Kubernetes.
-
-The implementation includes infrastructure provisioning with Terraform, workload identity federation, secure secret injection using the Secrets Store CSI Driver, runtime secret rotation validation, and automated security scanning with Trivy in GitHub Actions.
-
 ## Architecture
 
 The security architecture follows a federated identity model that removes the need for embedded credentials or Kubernetes-native secret storage of cloud credentials.
 
+This flow demonstrates secretless authentication from Kubernetes workloads to Azure services using federated identity.
+
 **Flow:**
 
 AKS Pod  
-↓  
+   ↓  
 Workload Identity (OIDC)  
-↓  
+   ↓  
 Azure Managed Identity  
-↓  
+   ↓  
 Azure Key Vault  
-↓  
+   ↓  
 Secrets Store CSI Driver  
-↓  
+   ↓  
 Secret mounted into container
 
 In this model, the pod uses a Kubernetes service account linked to a managed identity through OIDC federation. The workload is authorized to request secrets from Key Vault, and the CSI driver mounts those secrets directly into the container filesystem.
 
 ## Infrastructure Provisioning
+
+Before applying Terraform, copy the example variable file:
+
+```bash
+cp terraform.tfvars.example terraform.tfvars
+```
+
+Then update the values in terraform.tfvars with your desired configuration (e.g., region, resource names, cluster settings).
 
 Terraform provisions the core Azure resources required for the secure workload identity pattern, including:
 
@@ -157,6 +161,8 @@ The pipeline executes Trivy scans across Terraform infrastructure, Kubernetes ma
 
 This demonstrates a shift-left DevSecOps approach where security checks are enforced before infrastructure and workloads are deployed.
 
+This also enforces security gates at the CI stage, preventing insecure configurations from progressing further in the delivery pipeline.
+
 ![GitHub Actions Pipeline](docs/images/11-github-actions.png)
 
 ## Repository Structure
@@ -203,6 +209,27 @@ patches/
 docs/images/
 	(screenshots demonstrating each step)
 ```
+
+## Scripts Overview 
+
+The `scripts/` directory contains supporting automation used during setup, validation, and troubleshooting.
+
+- **Identity Setup**
+  - `create-workload-identity.ps1` – Configures OIDC federated identity for AKS workloads
+
+- **Key Vault Operations**
+  - `create-kv-secret.ps1` – Creates initial secret
+  - `rotate-secret.ps1` – Rotates Key Vault secret (used in rotation demo)
+
+- **Access Validation**
+  - `kv-verify.ps1` – Validates Key Vault access via workload identity
+  - `kv-can-access-secret.ps1` – Confirms RBAC permissions
+
+- **Cluster Setup**
+  - `connect-aks.ps1` – Retrieves kubeconfig
+  - `install-csi-driver.ps1` – Installs Secrets Store CSI Driver
+
+Other scripts support debugging and verification during development.
 
 ## Key DevSecOps Concepts Demonstrated
 
